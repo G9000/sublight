@@ -3,15 +3,15 @@ import { AuthenticationBox } from "@/components/auth/AuthenticationBox";
 
 const SignInPage = () => {
   return (
-    <>
+    <div className="h-screen flex items-center justify-center">
       <Head>
         <title>Sign in</title>
       </Head>
 
-      <div className="max-w-[325px] mx-auto">
+      <div className="max-w-[325px] w-full">
         <AuthenticationBox />
       </div>
-    </>
+    </div>
   );
 };
 

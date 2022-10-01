@@ -12,7 +12,7 @@ export function AuthenticationBox() {
   const [activeTab, setActiveTab] = useState(AuthTabs.SIGN_IN);
   return (
     <div>
-      <h1 className="text-4xl font-semibold text-gray-600 text-center">STOR</h1>
+      <h1 className="text-4xl font-bold text-gray-600 text-center">STOR</h1>
       <div className="mt-4">
         {activeTab === AuthTabs.SIGN_IN ? <SignIn /> : <SignUp />}
       </div>

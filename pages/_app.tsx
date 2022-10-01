@@ -11,6 +11,7 @@ const nhost = new NhostClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { nhostSession } = pageProps as any;
+
   return (
     <NhostNextProvider nhost={nhost} initial={nhostSession}>
       <NhostApolloProvider nhost={nhost}>
