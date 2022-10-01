@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignInEmailPassword, useSignUpEmailPassword } from "@nhost/nextjs";
+import clsx from "clsx";
 
 enum AuthTabs {
   SIGN_IN = "Sign In",
@@ -28,7 +29,11 @@ export function AuthenticationBox() {
             )
           }
         >
-          <a>{activeTab}</a>
+          <a>
+            {activeTab === AuthTabs.SIGN_UP
+              ? AuthTabs.SIGN_IN
+              : AuthTabs.SIGN_UP}
+          </a>
         </button>
       </p>
     </div>
@@ -66,7 +71,7 @@ function SignIn() {
     <div className="text-center">
       <div>
         {needsEmailVerification ? (
-          <p>
+          <p className="text-emerald-400">
             Please check your mailbox and follow the verification link to verify
             your email.
           </p>
@@ -79,6 +84,7 @@ function SignIn() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={disableForm}
+                  type="email"
                   required
                   className="bg-transparent pl-4 h-full w-full  text-gray-500"
                 />
@@ -90,10 +96,14 @@ function SignIn() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={disableForm}
+                  type="password"
                   required
                   className="bg-transparent pl-4 h-full w-full text-gray-500"
                 />
               </div>
+              {isError ? (
+                <p className="mt-2 text-rose-500">{error?.message}</p>
+              ) : null}
 
               <button
                 type="submit"
@@ -102,8 +112,6 @@ function SignIn() {
               >
                 {isLoading ? "Loading" : "Sign in"}
               </button>
-
-              {isError ? <p>{error?.message}</p> : null}
             </form>
           </>
         )}
@@ -152,10 +160,13 @@ function SignUp() {
     <div className="text-center">
       <div>
         {needsEmailVerification ? (
-          <p>
-            Please check your mailbox and follow the verification link to verify
-            your email.
-          </p>
+          <div className="text-emerald-500 border p-4 rounded-xl bg-gray-200 bg-opacity-25">
+            <h3 className="text-lg font-bold">🥳 Congratulation</h3>
+            <p className="mt-4">
+              Please check your mailbox and follow the verification link to
+              verify your email.
+            </p>
+          </div>
         ) : (
           <form onSubmit={handleOnSubmit}>
             <div>
@@ -165,6 +176,7 @@ function SignUp() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   disabled={disableForm}
+                  type="text"
                   required
                   className="bg-transparent pl-4 h-full w-full  text-gray-500"
                 />
@@ -176,6 +188,7 @@ function SignUp() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   disabled={disableForm}
+                  type="text"
                   required
                   className="bg-transparent pl-4 h-full w-full  text-gray-500"
                 />
@@ -187,6 +200,7 @@ function SignUp() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={disableForm}
+                type="email"
                 required
                 className="bg-transparent pl-4 h-full w-full  text-gray-500"
               />
@@ -198,6 +212,7 @@ function SignUp() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={disableForm}
+                type="password"
                 required
                 className="bg-transparent pl-4 h-full w-full  text-gray-500"
               />
@@ -211,7 +226,9 @@ function SignUp() {
               {isLoading ? "Loading" : "Create account"}
             </button>
 
-            {isError ? <p>{error?.message}</p> : null}
+            {isError ? (
+              <p className="mt-2 text-rose-500">{error?.message}</p>
+            ) : null}
           </form>
         )}
       </div>
