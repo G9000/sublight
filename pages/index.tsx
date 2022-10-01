@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import withAuth from "@/components/auth/with-auth";
 
+
 const Home: NextPage = () => {
   return (
     <div>

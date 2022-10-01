@@ -8,7 +8,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-gray-100 min-h-screen h-full flex flex-col w-full">
       {user && (
-        <header className="w-full px-10 py-6 flex justify-between items-center">
+        <header className="w-full px-10 py-6 flex justify-between items-center mb-16">
           <div className="text-gray-600 text-4xl font-bold">STOR</div>
           <div>
             <button
