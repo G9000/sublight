@@ -11,7 +11,7 @@ export default function withAuth(Component) {
     }
 
     if (!isAuthenticated) {
-      router.push("/sign-in");
+      router.push("/authentication");
       return null;
     }
 
