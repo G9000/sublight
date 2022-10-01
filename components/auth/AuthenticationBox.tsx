@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignInEmailPassword, useSignUpEmailPassword } from "@nhost/nextjs";
-import Link from "next/link";
 
 enum AuthTabs {
   SIGN_IN = "Sign In",
