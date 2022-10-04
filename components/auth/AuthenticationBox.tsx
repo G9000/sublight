@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSignInEmailPassword, useSignUpEmailPassword } from "@nhost/nextjs";
+import { useNhostClient, useProviderLink } from "@nhost/nextjs";
 import clsx from "clsx";
 
 enum AuthTabs {
@@ -10,9 +11,23 @@ enum AuthTabs {
 
 export function AuthenticationBox() {
   const [activeTab, setActiveTab] = useState(AuthTabs.SIGN_IN);
+  const { google } = useProviderLink();
+
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-gray-600 text-center">STOR</h1>
+    <div className="w-full">
+      <div className="text-4xl font-bold text-gray-600 text-center">
+        SUBLIGHT
+      </div>
+      <div>
+        <a
+          href={google}
+          className="inline-flex justify-center border p-4 w-full mt-12 rounded-2xl text-gray-600"
+        >
+          Sign with google
+        </a>
+      </div>
+      <div className="text-center my-6">or</div>
+
       <div className="mt-4">
         {activeTab === AuthTabs.SIGN_IN ? <SignIn /> : <SignUp />}
       </div>
@@ -78,7 +93,7 @@ function SignIn() {
         ) : (
           <>
             <form onSubmit={handleOnSubmit} className="mt-4">
-              <div className="bg-gray-200 h-[45px]">
+              <div className="bg-gray-200 h-[45px] rounded-xl">
                 <input
                   placeholder="email"
                   value={email}
@@ -86,11 +101,11 @@ function SignIn() {
                   disabled={disableForm}
                   type="email"
                   required
-                  className="bg-transparent pl-4 h-full w-full  text-gray-500"
+                  className="bg-transparent pl-4 h-full w-full  text-gray-500 focus:outline-none"
                 />
               </div>
 
-              <div className="bg-gray-200 h-[45px] mt-4">
+              <div className="bg-gray-200 h-[45px] mt-4 rounded-xl">
                 <input
                   placeholder="password"
                   value={password}
@@ -98,7 +113,7 @@ function SignIn() {
                   disabled={disableForm}
                   type="password"
                   required
-                  className="bg-transparent pl-4 h-full w-full text-gray-500"
+                  className="bg-transparent pl-4 h-full w-full text-gray-500 focus:outline-none"
                 />
               </div>
               {isError ? (
@@ -170,7 +185,7 @@ function SignUp() {
         ) : (
           <form onSubmit={handleOnSubmit}>
             <div>
-              <div className="bg-gray-200 h-[45px] mt-4">
+              <div className="bg-gray-200 h-[45px] mt-4 rounded-xl">
                 <input
                   placeholder="first name"
                   value={firstName}
@@ -178,11 +193,11 @@ function SignUp() {
                   disabled={disableForm}
                   type="text"
                   required
-                  className="bg-transparent pl-4 h-full w-full  text-gray-500"
+                  className="bg-transparent pl-4 h-full w-full  text-gray-500 focus:outline-none"
                 />
               </div>
 
-              <div className="bg-gray-200 h-[45px] mt-4">
+              <div className="bg-gray-200 h-[45px] mt-4 rounded-xl">
                 <input
                   placeholder="last name"
                   value={lastName}
@@ -190,11 +205,11 @@ function SignUp() {
                   disabled={disableForm}
                   type="text"
                   required
-                  className="bg-transparent pl-4 h-full w-full  text-gray-500"
+                  className="bg-transparent pl-4 h-full w-full  text-gray-500 focus:outline-none"
                 />
               </div>
             </div>
-            <div className="bg-gray-200 h-[45px] mt-4">
+            <div className="bg-gray-200 h-[45px] mt-4 rounded-xl">
               <input
                 placeholder="email"
                 value={email}
@@ -202,11 +217,11 @@ function SignUp() {
                 disabled={disableForm}
                 type="email"
                 required
-                className="bg-transparent pl-4 h-full w-full  text-gray-500"
+                className="bg-transparent pl-4 h-full w-full  text-gray-500 focus:outline-none"
               />
             </div>
 
-            <div className="bg-gray-200 h-[45px] mt-4">
+            <div className="bg-gray-200 h-[45px] mt-4 rounded-xl">
               <input
                 placeholder="password"
                 value={password}
@@ -214,7 +229,7 @@ function SignUp() {
                 disabled={disableForm}
                 type="password"
                 required
-                className="bg-transparent pl-4 h-full w-full  text-gray-500"
+                className="bg-transparent pl-4 h-full w-full  text-gray-500 focus:outline-none"
               />
             </div>
 
